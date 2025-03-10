@@ -13,6 +13,7 @@ import {
 export const useConfirm = (
   title: string,
   message: string,
+  buttonTitle: string,
   variant: ButtonProps["variant"] = "primary"
 ): [() => JSX.Element, () => Promise<unknown>] => {
   const [promise, setPromise] = useState<{
@@ -61,7 +62,7 @@ export const useConfirm = (
               variant={variant}
               className="w-full lg:w-auto"
             >
-              Delete
+              {buttonTitle}
             </Button>
           </div>
         </CardContent>
