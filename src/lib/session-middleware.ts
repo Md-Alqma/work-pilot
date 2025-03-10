@@ -1,5 +1,7 @@
 import "server-only";
 
+import { createMiddleware } from "hono/factory";
+import { getCookie } from "hono/cookie";
 import {
   Account,
   Client,
@@ -12,8 +14,6 @@ import {
   type Users as UsersType,
 } from "node-appwrite";
 
-import { getCookie } from "hono/cookie";
-import { createMiddleware } from "hono/factory";
 
 import { AUTH_COOKIE } from "@/features/auth/constants";
 

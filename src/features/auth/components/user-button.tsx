@@ -3,14 +3,12 @@
 import { Loader, LogOut } from "lucide-react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-
 import { DottedSeparator } from "@/components/dotted-separator";
 
 import { useLogout } from "../api/use-logout";

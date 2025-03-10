@@ -1,9 +1,13 @@
 "use client";
 
+import { useRef } from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { updateWorkspaceSchema } from "../schemas";
 import { z } from "zod";
+import { ArrowLeftIcon, ImageIcon } from "lucide-react";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
@@ -13,17 +17,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { DottedSeparator } from "@/components/dotted-separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useRef } from "react";
+import { DottedSeparator } from "@/components/dotted-separator";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import Image from "next/image";
-import { ArrowLeftIcon, ImageIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
+
 import { Workspace } from "../types";
 import { useUpdateWorkspace } from "../api/use-update-workspace";
+import { updateWorkspaceSchema } from "../schemas";
 
 interface EditWorkspaceFormrops {
   onCancel?: () => void;

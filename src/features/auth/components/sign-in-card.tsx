@@ -5,6 +5,7 @@ import { FaGithub } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
@@ -17,9 +18,10 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import Link from "next/link";
+
 import { loginSchema } from "../schemas";
 import { useLogin } from "../api/use-login";
+
 export const SignInCard = () => {
   const { mutate, isPending } = useLogin();
   const form = useForm<z.infer<typeof loginSchema>>({

@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 import { SettingsIcon, UsersIcon } from "lucide-react";
 import Link from "next/link";
 import {
@@ -9,8 +9,9 @@ import {
   GoHome,
   GoHomeFill,
 } from "react-icons/go";
+
+import { cn } from "@/lib/utils";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
-import { usePathname } from "next/navigation";
 
 const routes = [
   {
