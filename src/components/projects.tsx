@@ -12,7 +12,6 @@ import { useCreateProjectModal } from "@/features/projects/hooks/use-create-proj
 import { ProjectAvatar } from "@/features/projects/components/project-avatar";
 
 export const Projects = () => {
-  const projectId = null;
   const workspaceId = useWorkspaceId();
   const { data } = useGetProjects({ workspaceId });
   const pathname = usePathname();
@@ -28,7 +27,7 @@ export const Projects = () => {
         />
       </div>
       {data?.documents.map((project) => {
-        const href = `/workspaces/${workspaceId}/projects/${projectId}`;
+        const href = `/workspaces/${workspaceId}/projects/${project.$id}`;
         const isActive = pathname === href;
 
         return (
