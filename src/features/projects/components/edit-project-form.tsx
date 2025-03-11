@@ -29,6 +29,7 @@ import { Project } from "../types";
 import { useUpdateProject } from "../api/use-update-project";
 import { updateProjectSchema } from "../schemas";
 import { useConfirm } from "@/hooks/use-confirm";
+import { useDeleteProject } from "../api/use-delete-project";
 
 interface EditProjectFormrops {
   onCancel?: () => void;
@@ -42,9 +43,11 @@ export const EditProjectForm = ({
   const router = useRouter();
 
   const { mutate, isPending } = useUpdateProject();
+  const { mutate: deleteProject, isPending: isDeletingProject } =
+    useDeleteProject();
 
   const [DeleteDialog, confirmDelete] = useConfirm(
-    "Delete Workspace",
+    "Delete Project",
     "This action cannot be undone.",
     "Delete",
     "destructive"
@@ -82,21 +85,21 @@ export const EditProjectForm = ({
     }
   };
 
-  // const handleDelete = async () => {
-  //   const ok = await confirmDelete();
-  //   if (!ok) return;
+  const handleDelete = async () => {
+    const ok = await confirmDelete();
+    if (!ok) return;
 
-  //   deleteWorkspace(
-  //     {
-  //       param: { workspaceId: initialValues.$id },
-  //     },
-  //     {
-  //       onSuccess: () => {
-  //         window.location.href = "/";
-  //       },
-  //     }
-  //   );
-  // };
+    deleteProject(
+      {
+        param: { projectId: initialValues.$id },
+      },
+      {
+        onSuccess: () => {
+          window.location.href = `/workspaces/${initialValues.workspaceId}`;
+        },
+      }
+    );
+  };
 
   return (
     <div className="flex flex-col gap-y-4">
@@ -109,7 +112,10 @@ export const EditProjectForm = ({
             onClick={
               onCancel
                 ? onCancel
-                : () => router.push(`/workspaces/${initialValues.$id}`)
+                : () =>
+                    router.push(
+                      `/workspaces/${initialValues.workspaceId}/projects/${initialValues.$id}`
+                    )
             }
           >
             <ArrowLeftIcon className="size-4 mr-1" />
@@ -246,7 +252,7 @@ export const EditProjectForm = ({
               size="sm"
               variant="destructive"
               type="button"
-              disabled={isPending}
+              disabled={isDeletingProject}
               onClick={handleDelete}
             >
               Delete Project

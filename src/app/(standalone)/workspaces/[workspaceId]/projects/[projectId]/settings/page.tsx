@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 
 import { getCurrent } from "@/features/auth/queries";
 import { GetProject } from "@/features/projects/queries";
+import { EditProjectForm } from "@/features/projects/components/edit-project-form";
 
 interface ProjectIdSettingsPageProps {
   params: {
@@ -17,7 +18,11 @@ const ProjectIdSettingsPage = async ({
 
   const initialValues = await GetProject({ projectId: params.projectId });
 
-  return <div className="w-full lg:max-w-xl">Settings page</div>;
+  return (
+    <div className="w-full lg:max-w-xl">
+      <EditProjectForm initialValues={initialValues} />
+    </div>
+  );
 };
 
 export default ProjectIdSettingsPage;
