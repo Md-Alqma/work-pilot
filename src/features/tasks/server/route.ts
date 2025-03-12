@@ -51,27 +51,22 @@ const app = new Hono()
       ];
 
       if (projectId) {
-        console.log("projectId: ", projectId);
         query.push(Query.equal("projectId", projectId));
       }
 
       if (status) {
-        console.log("status: ", status);
         query.push(Query.equal("status", status));
       }
 
       if (assigneeId) {
-        console.log("assigneeId: ", assigneeId);
         query.push(Query.equal("assigneeId", assigneeId));
       }
 
       if (dueDate) {
-        console.log("dueDate: ", dueDate);
         query.push(Query.equal("dueDate", dueDate));
       }
 
       if (search) {
-        console.log("search: ", search);
         query.push(Query.equal("name", search));
       }
 
@@ -110,11 +105,11 @@ const app = new Hono()
       );
 
       const populatedTasks = tasks.documents.map((task) => {
-        const project = projects.documents.map(
+        const project = projects.documents.find(
           (project) => project.$id === task.projectId
         );
 
-        const assignee = assignees.map(
+        const assignee = assignees.find(
           (assignee) => assignee.$id === task.assigneeId
         );
 
