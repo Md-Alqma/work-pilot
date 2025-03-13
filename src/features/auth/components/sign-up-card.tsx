@@ -7,6 +7,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 
+import { signUpWithGithub, signUpWithGoogle } from "@/lib/oauth";
+
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
 import {
@@ -122,22 +124,24 @@ export const SignUpCard = () => {
       </div>
       <CardContent className="p-7 flex flex-col gap-y-4">
         <Button
+        onClick={() => signUpWithGoogle()}
           variant="secondary"
           disabled={isPending}
           size="lg"
           className="w-full"
         >
           <FcGoogle className="mr-2 size-5" />
-          Login with Google
+          Continue with Google
         </Button>
         <Button
+        onClick={() => signUpWithGithub()}
           variant="secondary"
           disabled={isPending}
           size="lg"
           className="w-full"
         >
           <FaGithub className="mr-2 size-5" />
-          Login with Github
+          Continue with Github
         </Button>
       </CardContent>
 
