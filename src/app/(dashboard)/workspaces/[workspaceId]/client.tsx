@@ -120,7 +120,6 @@ interface ProjectListProps {
 export const ProjectList = ({ data, total }: ProjectListProps) => {
   const { open: createProject } = useCreateProjectModal();
   const workspaceId = useWorkspaceId();
-  const { open: createTask } = useCreateTaskModal();
   return (
     <div className="flex flex-col gap-y-4 col-span-1">
       <div className="bg-white border rouded-lg p-4">
@@ -167,7 +166,6 @@ interface MemberListProps {
 
 export const MemberList = ({ data, total }: MemberListProps) => {
   const workspaceId = useWorkspaceId();
-  const { open: createTask } = useCreateTaskModal();
   return (
     <div className="flex flex-col gap-y-4 col-span-1">
       <div className="bg-white border rouded-lg p-4">

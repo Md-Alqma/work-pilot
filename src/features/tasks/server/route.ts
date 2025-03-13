@@ -1,4 +1,4 @@
-import { string, z } from "zod";
+import { z } from "zod";
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { ID, Query } from "node-appwrite";
@@ -332,6 +332,10 @@ const app = new Hono()
       }
 
       const workspaceId = workspaceIds.values().next().value;
+
+      if (!workspaceId) {
+        return c.json({ error: "Workspace ID is missing or invalid" }, 400);
+      }
 
       const member = await getMember({
         databases,

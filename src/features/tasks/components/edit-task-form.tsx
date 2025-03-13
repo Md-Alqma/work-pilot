@@ -1,13 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { cn } from "@/lib/utils";
 
-import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { MemberAvatar } from "@/features/members/components/member-avatar";
 import { ProjectAvatar } from "@/features/projects/components/project-avatar";
 
@@ -49,15 +47,16 @@ export const EditTaskForm = ({
   memberOptions,
   initialValues,
 }: EditTaskFormProps) => {
-  const workspaceId = useWorkspaceId();
-  const router = useRouter();
 
   const { mutate, isPending } = useUpdateTask();
 
-  const form = useForm<z.infer<typeof createTaskSchema>>({
-    resolver: zodResolver(
-      createTaskSchema.omit({ workspaceId: true, description: true })
-    ),
+  const schemaWithoutWorkspaceIdandDescription = createTaskSchema.omit({
+    workspaceId: true,
+    description: true,
+  });
+
+  const form = useForm<z.infer<typeof schemaWithoutWorkspaceIdandDescription>>({
+    resolver: zodResolver(schemaWithoutWorkspaceIdandDescription),
     defaultValues: {
       ...initialValues,
       dueDate: initialValues.dueDate
@@ -66,7 +65,9 @@ export const EditTaskForm = ({
     },
   });
 
-  const onSubmit = (values: z.infer<typeof createTaskSchema>) => {
+  const onSubmit = (
+    values: z.infer<typeof schemaWithoutWorkspaceIdandDescription>
+  ) => {
     mutate(
       { json: values, param: { taskId: initialValues.$id } },
       {

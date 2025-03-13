@@ -84,7 +84,7 @@ export const DataKanban = ({ data, onChange }: DataKanbanProps) => {
         $id: string;
         status: TaskStatus;
         position: number;
-      }[];
+      }[] = [];
 
       setTasks((prevTasks) => {
         const newTasks = { ...prevTasks };
