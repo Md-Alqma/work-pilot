@@ -1,27 +1,26 @@
 "use client";
 
 import { useCallback } from "react";
-import { Loader, PlusIcon } from "lucide-react";
 import { useQueryState } from "nuqs";
+import { Loader, PlusIcon } from "lucide-react";
 
 import { useProjectId } from "@/features/projects/hooks/use-project-id";
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 
-import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
+import { DottedSeparator } from "@/components/dotted-separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { columns } from "./columns";
+import { TaskStatus } from "../types";
 import { DataTable } from "./data-table";
 import { DataKanban } from "./data-kanban";
-import { DataCalendar } from "./data-calendar";
-
-import { TaskStatus } from "../types";
 import { DataFilters } from "./data-filters";
+import { DataCalendar } from "./data-calendar";
 import { useGetTasks } from "../api/use-get-tasks";
+import { useTaskFilters } from "../hooks/use-task-filters";
 import { useBulkUpdateTasks } from "../api/user-bulk-update-tasks";
 import { useCreateTaskModal } from "../hooks/use-create-task-modal";
-import { useTaskFilters } from "../hooks/use-task-filters";
 
 interface TaskViewSwitcherProps {
   hideProjetFilter?: boolean;

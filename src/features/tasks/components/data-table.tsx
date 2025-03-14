@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -14,8 +13,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,

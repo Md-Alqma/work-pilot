@@ -1,11 +1,12 @@
 "use client";
+
+import { MenuIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { MenuIcon } from "lucide-react";
 
+import { Sidebar } from "./sidebar";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
-import { Sidebar } from "./sidebar";
 
 export const MobileSidebar = () => {
   const [isOpen, setIsOpen] = useState(false);

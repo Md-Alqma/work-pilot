@@ -1,8 +1,9 @@
 import { useRouter } from "next/navigation";
 import { ExternalLinkIcon, PencilIcon, TrashIcon } from "lucide-react";
 
-import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { useConfirm } from "@/hooks/use-confirm";
+
+import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 
 import {
   DropdownMenu,

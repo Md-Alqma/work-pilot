@@ -4,15 +4,16 @@ import Link from "next/link";
 import { Fragment } from "react";
 import { ArrowLeftIcon, Loader, MoreVerticalIcon } from "lucide-react";
 
+import { useConfirm } from "@/hooks/use-confirm";
+
 import { MemberRole } from "@/features/members/types";
-import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 import { useGetMembers } from "@/features/members/api/use-get-members";
 import { MemberAvatar } from "@/features/members/components/member-avatar";
 import { useDeleteMember } from "@/features/members/api/use-delete-member";
 import { useUpdateMember } from "@/features/members/api/use-update-member";
+import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 
 import { Button } from "@/components/ui/button";
-import { useConfirm } from "@/hooks/use-confirm";
 import { Separator } from "@/components/ui/separator";
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

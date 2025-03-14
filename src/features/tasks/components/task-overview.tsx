@@ -1,15 +1,16 @@
 import { PencilIcon } from "lucide-react";
 
+import { snakeCaseToTitleCase } from "@/lib/utils";
+
 import { MemberAvatar } from "@/features/members/components/member-avatar";
 
-import { DottedSeparator } from "@/components/dotted-separator";
-import { snakeCaseToTitleCase } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { DottedSeparator } from "@/components/dotted-separator";
 
 import { Task } from "../types";
-import { OverviewProperty } from "./overview-property";
 import { TaskDate } from "./task-date";
+import { OverviewProperty } from "./overview-property";
 import { useEditTaskModal } from "../hooks/use-edit-task-modal";
 
 interface TaskOverviewProps {

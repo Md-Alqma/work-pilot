@@ -1,16 +1,21 @@
 "use client";
 
+import { z } from "zod";
 import { useRef } from "react";
 import Image from "next/image";
+import { ImageIcon } from "lucide-react";
+import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { ImageIcon } from "lucide-react";
-import { z } from "zod";
 
 import { cn } from "@/lib/utils";
+
 import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { DottedSeparator } from "@/components/dotted-separator";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
@@ -20,13 +25,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { DottedSeparator } from "@/components/dotted-separator";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
-import { useCreateProject } from "../api/use-create-project";
 import { createProjectSchema } from "../schemas";
+import { useCreateProject } from "../api/use-create-project";
 
 interface CreateProjectFormProps {
   onCancel?: () => void;

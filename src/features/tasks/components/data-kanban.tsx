@@ -6,9 +6,9 @@ import {
   type DropResult,
 } from "@hello-pangea/dnd";
 
+import { KanbanCard } from "./kanban-card";
 import { Task, TaskStatus } from "../types";
 import { KanbanColumnHeader } from "./kanban-column-header";
-import { KanbanCard } from "./kanban-card";
 
 const boards: TaskStatus[] = [
   TaskStatus.BACKLOG,

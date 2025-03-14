@@ -3,13 +3,13 @@
 import { useGetTask } from "@/features/tasks/api/use-get-task";
 import { useTaskId } from "@/features/tasks/hooks/use-task-id";
 
-import { TaskBreadcrumbs } from "@/features/tasks/components/task-breadcrumbs";
 import { TaskOverview } from "@/features/tasks/components/task-overview";
+import { TaskBreadcrumbs } from "@/features/tasks/components/task-breadcrumbs";
 import { TaskDescription } from "@/features/tasks/components/task-description";
 
-import { DottedSeparator } from "@/components/dotted-separator";
-import { PageLoader } from "@/components/page-loader";
 import { PageError } from "@/components/page-error";
+import { PageLoader } from "@/components/page-loader";
+import { DottedSeparator } from "@/components/dotted-separator";
 
 export const TaskIdClient = () => {
   const taskId = useTaskId();

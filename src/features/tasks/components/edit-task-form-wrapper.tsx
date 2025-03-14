@@ -6,8 +6,8 @@ import { useWorkspaceId } from "@/features/workspaces/hooks/use-workspace-id";
 
 import { Card, CardContent } from "@/components/ui/card";
 
-import { useGetTask } from "../api/use-get-task";
 import { EditTaskForm } from "./edit-task-form";
+import { useGetTask } from "../api/use-get-task";
 
 interface EditTaskFormWrapperProps {
   onCancel: () => void;

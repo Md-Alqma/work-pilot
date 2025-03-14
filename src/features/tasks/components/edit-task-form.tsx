@@ -1,18 +1,18 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { cn } from "@/lib/utils";
 
 import { MemberAvatar } from "@/features/members/components/member-avatar";
 import { ProjectAvatar } from "@/features/projects/components/project-avatar";
 
-import { DatePicker } from "@/components/date-picker";
-import { DottedSeparator } from "@/components/dotted-separator";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { DatePicker } from "@/components/date-picker";
+import { DottedSeparator } from "@/components/dotted-separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Form,
@@ -30,8 +30,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import { createTaskSchema } from "../schemas";
 import { Task, TaskStatus } from "../types";
+import { createTaskSchema } from "../schemas";
 import { useUpdateTask } from "../api/use-update-task";
 
 interface EditTaskFormProps {

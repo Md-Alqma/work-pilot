@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { enUS } from "date-fns/locale";
+import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import { CalendarIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import {
   format,
@@ -8,16 +10,14 @@ import {
   addMonths,
   subMonths,
 } from "date-fns";
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
-import { enUS } from "date-fns/locale";
 
 import { Button } from "@/components/ui/button";
 
 import { Task } from "../types";
 import { EventCard } from "./event-card";
 
-import "react-big-calendar/lib/css/react-big-calendar.css";
 import "./data-calendar.css";
+import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const locales = {
   "en-US": enUS,
