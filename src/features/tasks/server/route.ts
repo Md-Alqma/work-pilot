@@ -9,7 +9,8 @@ import { sessionMiddleware } from "@/lib/session-middleware";
 import { DATABASE_ID, MEMBERS_ID, PROJECTS_ID, TASKS_ID } from "@/config";
 
 import { Project } from "@/features/projects/types";
-import { getMember } from "@/features/members/utils";
+import { getMember, getUserDisplay } from "@/features/members/utils";
+import { Member } from "@/features/members/types";
 
 import { createTaskSchema } from "../schemas";
 import { Task, TaskStatus } from "../types";
@@ -84,22 +85,22 @@ const app = new Hono()
       const projects = await databases.listDocuments<Project>(
         DATABASE_ID,
         PROJECTS_ID,
-        projectIds.length > 0 ? [Query.contains("$id", projectIds)] : []
+        projectIds.length > 0 ? [Query.equal("$id", projectIds)] : []
       );
 
-      const members = await databases.listDocuments<Project>(
+      const members = await databases.listDocuments<Member>(
         DATABASE_ID,
         MEMBERS_ID,
-        assigneeIds.length > 0 ? [Query.contains("$id", assigneeIds)] : []
+        assigneeIds.length > 0 ? [Query.equal("$id", assigneeIds)] : []
       );
 
       const assignees = await Promise.all(
         members.documents.map(async (member) => {
-          const user = await users.get(member.userId);
+          const user = await getUserDisplay(users, member.userId);
 
           return {
             ...member,
-            name: user.name || user.email,
+            name: user.name,
             email: user.email,
           };
         })
@@ -277,11 +278,11 @@ const app = new Hono()
       task.assigneeId
     );
 
-    const user = await users.get(member.userId);
+    const user = await getUserDisplay(users, member.userId);
 
     const assignee = {
       ...member,
-      name: user.name || user.email,
+      name: user.name,
       email: user.email,
     };
 

@@ -1,4 +1,4 @@
-import { Databases, Query } from "node-appwrite";
+import { Databases, Query, Users } from "node-appwrite";
 
 import { DATABASE_ID, MEMBERS_ID } from "@/config";
 
@@ -19,4 +19,19 @@ export const getMember = async ({
   ]);
 
   return members.documents[0];
+};
+
+export const getUserDisplay = async (users: Users, userId: string) => {
+  try {
+    const user = await users.get(userId);
+    return {
+      name: user.name || user.email,
+      email: user.email,
+    };
+  } catch {
+    return {
+      name: "Unknown user",
+      email: "",
+    };
+  }
 };

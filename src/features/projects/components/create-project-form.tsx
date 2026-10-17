@@ -135,7 +135,7 @@ export const CreateProjectForm = ({ onCancel }: CreateProjectFormProps) => {
                         <input
                           className="hidden"
                           type="file"
-                          accept=".jpg .png .jpeg .svg"
+                          accept=".jpg,.jpeg,.png,.svg,image/jpeg,image/png,image/svg+xml"
                           ref={inputRef}
                           onChange={handleImageChange}
                           disabled={isPending}

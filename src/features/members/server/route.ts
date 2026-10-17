@@ -8,7 +8,7 @@ import { sessionMiddleware } from "@/lib/session-middleware";
 
 import { DATABASE_ID, MEMBERS_ID } from "@/config";
 
-import { getMember } from "../utils";
+import { getMember, getUserDisplay } from "../utils";
 import { Member, MemberRole } from "../types";
 
 const app = new Hono()
@@ -38,11 +38,11 @@ const app = new Hono()
 
       const populatedMembers = await Promise.all(
         members.documents.map(async (member) => {
-          const user = await users.get(member.userId);
+          const user = await getUserDisplay(users, member.userId);
 
           return {
             ...member,
-            name: user.name || user.email,
+            name: user.name,
             email: user.email,
           };
         })
