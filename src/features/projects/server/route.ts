@@ -91,12 +91,12 @@ const app = new Hono()
           ID.unique(),
           image
         );
-        const arrayBuffer = await storage.getFilePreview(
+        const arrayBuffer = await storage.getFileView(
           IMAGES_BUCKET_ID,
           file.$id
         );
 
-        uploadedImageUrl = `data:image/png;base64,${Buffer.from(
+        uploadedImageUrl = `data:${image.type};base64,${Buffer.from(
           arrayBuffer
         ).toString("base64")}`;
       }
@@ -151,12 +151,12 @@ const app = new Hono()
           ID.unique(),
           image
         );
-        const arrayBuffer = await storage.getFilePreview(
+        const arrayBuffer = await storage.getFileView(
           IMAGES_BUCKET_ID,
           file.$id
         );
 
-        uploadedImageUrl = `data:image/png;base64,${Buffer.from(
+        uploadedImageUrl = `data:${image.type};base64,${Buffer.from(
           arrayBuffer
         ).toString("base64")}`;
       } else {
