@@ -23,10 +23,10 @@ export const useRegister = () => {
       }
       return await response.json();
     },
-    onSuccess: () => {
-      toast.success("Registerd");
-      router.refresh();
-      queryClient.invalidateQueries({ queryKey: ["current"] });
+    onSuccess: (data) => {
+      toast.success("Registered");
+      queryClient.setQueryData(["current"], data.user);
+      router.replace(data.redirectTo);
     },
     onError: () => {
       toast.error("Failed to register");

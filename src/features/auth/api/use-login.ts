@@ -20,10 +20,10 @@ export const useLogin = () => {
       }
       return await response.json();
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast.success("Logged in");
-      router.refresh();
-      queryClient.invalidateQueries({ queryKey: ["current"] });
+      queryClient.setQueryData(["current"], data.user);
+      router.replace(data.redirectTo);
     },
     onError: () => {
       toast.error("Failed to log in");
