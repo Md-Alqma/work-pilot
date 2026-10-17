@@ -198,6 +198,22 @@ const app = new Hono()
       return c.json({ error: "Unauthorized" }, 401);
     }
 
+    // Delete related tasks in batches (Appwrite list limit is 100)
+    while (true) {
+      const tasks = await databases.listDocuments(DATABASE_ID, TASKS_ID, [
+        Query.equal("projectId", projectId),
+        Query.limit(100),
+      ]);
+
+      if (tasks.documents.length === 0) break;
+
+      await Promise.all(
+        tasks.documents.map((task) =>
+          databases.deleteDocument(DATABASE_ID, TASKS_ID, task.$id)
+        )
+      );
+    }
+
     await databases.deleteDocument(DATABASE_ID, PROJECTS_ID, projectId);
 
     return c.json({ data: { $id: existingProject.$id } });

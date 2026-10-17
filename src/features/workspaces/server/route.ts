@@ -10,6 +10,7 @@ import {
   DATABASE_ID,
   IMAGES_BUCKET_ID,
   MEMBERS_ID,
+  PROJECTS_ID,
   TASKS_ID,
   WORKSPACES_ID,
 } from "@/config";
@@ -202,6 +203,29 @@ const app = new Hono()
     if (!member || member.role !== MemberRole.ADMIN) {
       return c.json({ error: "Unauthorized" }, 401);
     }
+
+    // Delete related documents in batches (Appwrite list limit is 100)
+    const deleteByWorkspace = async (collectionId: string) => {
+      while (true) {
+        const documents = await databases.listDocuments(
+          DATABASE_ID,
+          collectionId,
+          [Query.equal("workspaceId", workspaceId), Query.limit(100)]
+        );
+
+        if (documents.documents.length === 0) break;
+
+        await Promise.all(
+          documents.documents.map((doc) =>
+            databases.deleteDocument(DATABASE_ID, collectionId, doc.$id)
+          )
+        );
+      }
+    };
+
+    await deleteByWorkspace(TASKS_ID);
+    await deleteByWorkspace(PROJECTS_ID);
+    await deleteByWorkspace(MEMBERS_ID);
 
     await databases.deleteDocument(DATABASE_ID, WORKSPACES_ID, workspaceId);
 
